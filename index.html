@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <title>Frontend Mentor | Mortgage Repayment Calculator</title>
+  <style>
+    body {
+      font-family: Plus Jakarta Sans;
+      font-weight: 500, 700;
+      margin: 0;
+      padding: 0;
+      /* display: flex; */
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f2f5;
+    }
+
+    .container1 {
+      margin: 100px;
+      margin-left: 200px;
+      background-color: #fff;
+      align-self: center;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      max-width: 800px;
+    }
+
+    .inner-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .input-form, .result {
+      flex: 1;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .input-form {
+      background-color: #fFff;
+    }
+
+    .result {
+      background-color: #07172b;
+      color: #fff;
+      /* display: flex; */
+      justify-content: center;
+      border-radius: 0 0 10px 50px;
+    }
+    hr{
+      color: hsl(61, 70%, 52%);
+    }
+    .card{
+      border-top: 4px solid hsl(61, 70%, 52%);
+      border-radius: 10px;
+      background-color: #000b18;
+      padding: 20px;
+      margin-bottom: 60px;
+    }
+    .result p{
+      color: hsla(203, 87%, 94%, 0.534)
+;
+    }
+    .card h1{
+      font-size: 50px;
+      padding: 0;
+      color: hsl(61, 70%, 52%);
+    }
+
+    .form-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .form-head h2 {
+      margin: 0;
+      font-size: 24px;
+      color: #333;
+    }
+
+    .form-head a {
+      color: #007bff;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .form-main label {
+      display: block;
+      margin-bottom: 5px;
+      color: #807b7bd2;
+      font-weight: bold;
+    }
+
+    .amount, .years, .rate {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .currency, .text, .rate-text {
+      background-color: #caeef5bd;
+      color: black;
+      font-weight: bold;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .amount-input, .terms-input, .interest-input {
+      flex: 1;
+      padding: 10px;
+    }
+
+    .amount-input input, .terms-input input, .interest-input input {
+      width: 100%;
+      border: none;
+      outline: none;
+    }
+
+    .Terms-interest {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .type {
+      justify-content: space-between;
+      margin: 20px 0;
+    }
+
+    .type {
+  margin-bottom: 1rem;
+}
+
+.repay, .interest-only {
+  display: flex;
+  align-items: center;
+}
+
+label {
+  margin-right: 0.5rem;
+}
+
+input[type="radio"] {
+  margin-right: 0.5rem;
+  color:green ;
+}
+
+    .repay, .interest-only {
+      display: flex;
+      margin-bottom: 5px;
+      padding: 10px;
+
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      overflow: hidden;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: #555;
+      font-weight: bold;
+    }
+
+    .button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: hsl(61, 70%, 52%);
+      color:black;
+      border: none;
+      padding-left: 30px;
+      padding-right: 30px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .button img {
+      margin-right: 10px;
+    }
+
+    .attribution {
+      font-size: 11px;
+      text-align: center;
+      margin-top: 20px;
+      color: #555;
+    }
+
+    .attribution a {
+      color: hsl(228, 45%, 44%);
+      text-decoration: none;
+    }
+    input{
+      font-family: Plus Jakarta Sans;
+    }
+    #error{
+      color: red;
+    }
+
+    /* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+
+  .container1 {
+      width: auto;
+        margin: 10px;
+        padding: 10px;
+    }
+    .inner-container {
+        flex-direction: column;
+    }
+
+    .form-head {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .form-head h2 {
+        margin-bottom: 10px;
+    }
+
+    .Terms-interest {
+        flex-direction: column;
+    }
+
+    .amount, .years, .rate {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .currency, .text, .rate-text {
+        width: 100%;
+        text-align: left;
+        padding: 5px 10px;
+    }
+
+    .amount-input input, .terms-input input, .interest-input input {
+        padding: 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container1 {
+      width: auto;
+        margin: 10px;
+        padding: 10px;
+    }
+
+    .Terms-interest{
+      display: flex;
+      gap: 10px;
+    }
+
+    .input-form, .result {
+        padding: 10px;
+        align-self: center;
+    }
+    .result{
+      padding: 30px;
+    }
+
+    .amount, .years, .rate {
+        margin-bottom: 10px;
+    }
+
+    .button {
+        padding-left: 20px;
+        padding-right: 20px;
+        font-size: 12px;
+    }
+
+    .form-head h2 {
+        font-size: 20px;
+    }
+
+    .form-main label {
+        font-size: 14px;
+    }
+
+    .currency, .text, .rate-text {
+        padding: 5px;
+    }
+}
+
+  </style>
+</head>
+
+<body>
+  <div class="container1">
+    <div class="inner-container">
+      <div class="input-form">
+        <p id="error"></p>
+        <div class="form-head">
+          <h2>Mortgage Calculator</h2>
+          <a href="" onclick="">Clear All</a>
+        </div>
+        <div class="form-main">
+          <label for="amount">Mortgage Amount</label>
+          <div class="amount">
+            <div class="currency" id="new-error">$</div>
+            <div class="amount-input">
+              <input type="text" id="amount" required>
+            </div>
+          </div>
+          <div class="Terms-interest">
+            <div class="terms">
+              <label for="">Mortgage Term</label><br>
+              <div class="years">
+                <div class="terms-input">
+                  <input type="text"  id="terms" required>
+                </div>
+                <div class="text" id="new-error">years</div>
+              </div>
+            </div>
+            <div class="interest">
+              <label for="">Interest Rate</label><br>
+              <div class="rate">
+                <div class="interest-input">
+                  <input type="text" id="rate" required>
+                </div>
+                <div class="rate-text" id="new-error">%</div>
+              </div>
+            </div>
+          </div>
+          <div class="type">
+            <label for="mortgage-type-repayment">Mortgage Type</label>
+            <div class="repay">
+              <input type="radio" id="mortgage-type-repayment" name="mortgage-type" value="repayment">
+              <label for="mortgage-type-repayment">Repayment</label>
+            </div>
+            <div class="interest-only">
+              <input type="radio" id="mortgage-type-interest-only" name="mortgage-type" value="interest-only">
+              <label for="mortgage-type-interest-only">Interest Only</label>
+            </div>
+          </div>
+          
+          <button class="button" type="submit" onclick="calculateMortgage()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill="#133041" d="M18.75 2.25H5.25a1.5 1.5 0 0 0-1.5 1.5v16.5a1.5 1.5 0 0 0 1.5 1.5h13.5a1.5 1.5 0 0 0 1.5-1.5V3.75a1.5 1.5 0 0 0-1.5-1.5Zm-10.5 16.5a1.125 1.125 0 1 1 0-2.25 1.125 1.125 0 0 1 0 2.25Zm0-3.75a1.125 1.125 0 1 1 0-2.25 1.125 1.125 0 0 1 0 2.25ZM12 18.75a1.125 1.125 0 1 1 0-2.25 1.125 1.125 0 0 1 0 2.25ZM12 15a1.125 1.125 0 1 1 0-2.25A1.125 1.125 0 0 1 12 15Zm3.75 3.75a1.125 1.125 0 1 1 0-2.25 1.125 1.125 0 0 1 0 2.25Zm0-3.75a1.125 1.125 0 1 1 0-2.25 1.125 1.125 0 0 1 0 2.25Zm1.5-5.25a.75.75 0 0 1-.75.75h-9a.75.75 0 0 1-.75-.75V6a.75.75 0 0 1 .75-.75h9a.75.75 0 0 1 .75.75v3.75Z"/></svg>
+            <h4>Calculate Repayment</h4>
+          </button>
+        </div>
+      </div>
+      <div class="result">
+        <h2>Your results</h2>
+        <p>Your results are shown below based on the infomation you provided. to adjust the results, edit the form and click Calculate repayments again.</p>
+        
+        <div class="card">
+          <p id="pay">---</p>
+          <h1 id="result"></h1>
+          <hr>
+          <p id="tot">---</p>
+          <h3 id="total"></h3>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>.
+    Coded by <a href="#">Sadick Issaka</a>.
+  </div>
+
+  <script src="scripts.js"></script>
+</body>
+
+</html>
